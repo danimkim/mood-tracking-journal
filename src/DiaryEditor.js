@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./DiaryEditor.css";
 
 const DiaryEditor = () => {
@@ -7,6 +7,9 @@ const DiaryEditor = () => {
     content: "",
     emotion: 1,
   });
+
+  const authorRef = useRef();
+  const contentRef = useRef();
 
   /** 작성자 input change 이벤트 핸들러 */
   const handleFormChange = (e) => {
@@ -18,8 +21,17 @@ const DiaryEditor = () => {
 
   /** form submit handler */
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formState);
+    // submit 했을때, 입력값이 특정 값보다 작은 경우, 해당 input에 포커스 주기
+    if (formState.author.length < 2) {
+      alert("작성자명을 두 글자 이상 입력하세요.");
+      authorRef.current.focus();
+      return;
+    }
+    if (formState.content.length < 10) {
+      alert("내용을 10글자 이상 입력하세요.");
+      contentRef.current.focus();
+      return;
+    }
   };
 
   return (
@@ -34,6 +46,7 @@ const DiaryEditor = () => {
           placeholder="작성자를 입력하세요"
           value={formState.author}
           onChange={handleFormChange}
+          ref={authorRef}
         />
         <textarea
           name="content"
@@ -41,6 +54,7 @@ const DiaryEditor = () => {
           className="input-content"
           value={formState.content}
           onChange={handleFormChange}
+          ref={contentRef}
         />
         <div className="emotion-grade-wrapper">
           <label htmlFor="emotion-grade">오늘의 감정점수</label>
