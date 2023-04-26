@@ -61,13 +61,13 @@
   width: 100px;
   height: 40px;
   border: none;
-  background-color: tomato;
+  background-color: #004c50;
   color: #fff;
   border-radius: 10px;
 }
 
 .form__button--submit:hover {
   cursor: pointer;
-  background-color: rgb(234, 84, 57);
+  background-color: #00979f;
   transition: background-color ease-in-out 0.2s;
 }
