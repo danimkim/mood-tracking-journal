@@ -25,17 +25,28 @@ function App() {
     setData([...data, newItem]);
   };
 
-  // 일기 삭제하기 핸들러 추가 handleDelete targetId 인자로 받기
   const handleDeleteDiary = (targetId) => {
     const newData = data.filter((item) => item.id !== targetId);
 
     setData(newData);
   };
 
+  const handleEditDiary = (targetId, newContent) => {
+    setData(
+      data.map((item) =>
+        item.id === targetId ? { ...item, content: newContent } : item
+      )
+    );
+  };
+
   return (
     <div className="App">
       <DiaryEditor onCreate={handleCreateDiary} />
-      <DiaryList diaryList={data} onDelete={handleDeleteDiary} />
+      <DiaryList
+        diaryList={data}
+        onDelete={handleDeleteDiary}
+        onEdit={handleEditDiary}
+      />
     </div>
   );
 }
