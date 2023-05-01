@@ -1,5 +1,3 @@
-import { BrowserRouter } from "react-router-dom";
-import AppRouter from "./router";
 import Home from "./pages/Home";
 import React, { useReducer, useRef } from "react";
 
@@ -92,12 +90,7 @@ function App() {
   return (
     <DiaryStateContext.Provider value={data}>
       <DiaryDispatchContext.Provider value={(onCreate, onDelete, onEdit)}>
-        <BrowserRouter>
-          <div className="App">
-            <Home />
-          </div>
-          <AppRouter />
-        </BrowserRouter>
+        <Home />
       </DiaryDispatchContext.Provider>
     </DiaryStateContext.Provider>
   );
