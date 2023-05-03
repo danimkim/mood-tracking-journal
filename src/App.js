@@ -1,9 +1,10 @@
+import "./styles/reset.css";
+import "./styles/global.css";
+import React, { useReducer, useRef, createContext } from "react";
+import styled from "styled-components";
 import Home from "./pages/Home";
-import React, { useReducer, useRef } from "react";
-
-// reducer 함수 만들기
-//switch 문 이용해서 만들기
-// newState를 배열ㄹ로 만들어서 사용햅기
+import { RouterProvider } from "react-router-dom";
+import { router } from "./constant/router";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -13,10 +14,7 @@ const reducer = (state, action) => {
       return action.data;
     }
     case "CREATE": {
-      const newItem = {
-        ...action.data,
-      };
-      newState = [newItem, ...state];
+      newState = [action.data, ...state];
       break;
     }
     case "EDIT": {
@@ -35,6 +33,45 @@ const reducer = (state, action) => {
   return newState;
 };
 
+/** state를 전역에 제공하기 위한 컨텍스트 */
+export const JournalStateContext = createContext();
+
+/** dispatch 함수를 전역에 제공하기 위하 컨텍스트 */
+export const JournalDispatchContext = createContext();
+
+const dummyData = [
+  {
+    id: 1,
+    emotion: 1,
+    content: "오늘의일기 1번",
+    date: 1683023042273,
+  },
+  {
+    id: 2,
+    emotion: 3,
+    content: "오늘의일기 2번",
+    date: 1683023087758,
+  },
+  {
+    id: 3,
+    emotion: 5,
+    content: "오늘의일기 3번",
+    date: 1683023097851,
+  },
+  {
+    id: 4,
+    emotion: 1,
+    content: "오늘의일기 4번",
+    date: 1683023117558,
+  },
+  {
+    id: 5,
+    emotion: 4,
+    content: "오늘의일기 5번",
+    date: 1683023127193,
+  },
+];
+
 function App() {
   /** data
    *  @prop id - 일기장 고유번호
@@ -44,7 +81,7 @@ function App() {
    * @prop data - 작성일시
    * @prop targetId - 일기 수정,삭제시 수정,삭제하고자 하는 타겟 일기 고유번호
    */
-  const [data, dispatch] = useReducer(reducer, []);
+  const [data, dispatch] = useReducer(reducer, dummyData);
 
   /** 일기 고유번호 부여하기 위한 ref */
   const dataId = useRef(1);
@@ -81,18 +118,14 @@ function App() {
     dispatch({ type: "DELETE", targetId });
   };
 
-  /** state를 전역에 제공하기 위한 컨텍스트 */
-  const DiaryStateContext = React.createContext();
-
-  /** dispatch 함수를 전역에 제공하기 위하 컨텍스트 */
-  const DiaryDispatchContext = React.createContext();
-
   return (
-    <DiaryStateContext.Provider value={data}>
-      <DiaryDispatchContext.Provider value={(onCreate, onDelete, onEdit)}>
-        <Home />
-      </DiaryDispatchContext.Provider>
-    </DiaryStateContext.Provider>
+    <JournalStateContext.Provider value={data}>
+      <JournalDispatchContext.Provider value={(onCreate, onDelete, onEdit)}>
+        <RouterProvider router={router}>
+          <Home />
+        </RouterProvider>
+      </JournalDispatchContext.Provider>
+    </JournalStateContext.Provider>
   );
 }
 

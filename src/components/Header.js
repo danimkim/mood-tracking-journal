@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const Header = ({ leftButton, rightButton, pageTitle }) => {
-  console.log(pageTitle);
   return (
     <HeaderContainer>
       <LeftButton>{leftButton}</LeftButton>
