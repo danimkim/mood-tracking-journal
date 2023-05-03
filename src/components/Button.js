@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-const Button = ({ children, type }) => {
-  return <ButtonStyle buttonType={type}>{children}</ButtonStyle>;
+const Button = ({ children, buttonType, onClick }) => {
+  return (
+    <ButtonStyle buttonType={buttonType} onClick={onClick} type="button">
+      {children}
+    </ButtonStyle>
+  );
 };
 
 export default Button;
 
 // default, warning, positive, disable
-
-/**
- 
- */
 
 const ButtonStyle = styled.button`
   border: none;
@@ -23,9 +23,9 @@ const ButtonStyle = styled.button`
       ? "#E0D7FC"
       : "#8d8cff"};
   color: #fff;
-  width: 100px;
-  height: 40px;
-  font-size: 1rem;
+  width: 80px;
+  height: 30px;
+  font-size: 0.8rem;
   border-radius: 5px;
 
   &:hover {
