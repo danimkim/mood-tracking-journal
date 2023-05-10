@@ -5,6 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 const JournalItem = ({ id, emotion, content, date }) => {
   const navigate = useNavigate();
 
+  /** converted from milliseconds to locale date value */
+  const formattedDate = new Date(parseInt(date)).toLocaleDateString();
+
   /** journal item 클릭시 해당 item 조회 페이지로 이동시켜주는 함수 */
   const goDetail = () => {
     navigate(`/journal/${id}`);
@@ -13,10 +16,10 @@ const JournalItem = ({ id, emotion, content, date }) => {
   return (
     <Container>
       <Link to={`/journal/${id}`}>
-        <EmojiBox>Emoji</EmojiBox>
+        <EmojiBox>{emotion}</EmojiBox>
         <ContentPreview>
-          <p>2023.05.02</p>
-          <p>제목이에요</p>
+          <p>{formattedDate}</p>
+          <p>{content}</p>
         </ContentPreview>
       </Link>
       <ButtonBox>

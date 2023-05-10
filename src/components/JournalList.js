@@ -50,7 +50,6 @@ const JournalList = ({ journalList }) => {
         : copyList.filter((item) => filterByEmotion(item));
 
     const sortedList = filteredList.sort(compare);
-    console.log("sorted list", sortedList);
 
     return sortedList;
   };
@@ -72,28 +71,9 @@ const JournalList = ({ journalList }) => {
         />
         <Button onClick={handleClick}>새 일기쓰기</Button>
       </ControlMenuBar>
-      {sortJournalList().map((journal) => {
-        console.log(journal);
-        return <JournalItem key={journal.id} {...journal} />;
-      })}
-      <JournalItem
-        id={10}
-        emotion={1}
-        content={"아 개짱난다"}
-        date={1683023042273}
-      />
-      <JournalItem
-        id={10}
-        emotion={1}
-        content={"아 개짱난다"}
-        date={1683023042273}
-      />
-      <JournalItem
-        id={10}
-        emotion={1}
-        content={"아 개짱난다"}
-        date={1683023042273}
-      />
+      {sortJournalList().map((journal) => (
+        <JournalItem key={journal.id} id={journal.id} {...journal} />
+      ))}
     </Container>
   );
 };

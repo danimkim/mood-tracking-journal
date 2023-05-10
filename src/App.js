@@ -44,31 +44,31 @@ const dummyData = [
     id: 1,
     emotion: 1,
     content: "오늘의일기 1번",
-    date: 1683023042273,
+    date: new Date().getTime() - 10000000,
   },
   {
     id: 2,
     emotion: 3,
     content: "오늘의일기 2번",
-    date: 1683023087758,
+    date: new Date().getTime() - 200000000,
   },
   {
     id: 3,
     emotion: 5,
     content: "오늘의일기 3번",
-    date: 1683023097851,
+    date: new Date().getTime(),
   },
   {
     id: 4,
     emotion: 1,
     content: "오늘의일기 4번",
-    date: 1683023117558,
+    date: new Date().getTime() - 100000000,
   },
   {
     id: 5,
     emotion: 4,
     content: "오늘의일기 5번",
-    date: 1683023127193,
+    date: new Date().getTime() - 300000000,
   },
 ];
 
