@@ -19,25 +19,27 @@ const Home = () => {
   const headerText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
 
   useEffect(() => {
-    /** 해당 월의 가장 첫째날 */
-    const firstDay = new Date(
-      curDate.getFullYear(),
-      curDate.getMonth(),
-      1
-    ).getTime();
+    if (journalList.length >= 1) {
+      /** 해당 월의 가장 첫째날 */
+      const firstDay = new Date(
+        curDate.getFullYear(),
+        curDate.getMonth(),
+        1
+      ).getTime();
 
-    /** 해당 월의 가장 마지막날 */
-    const lastDay = new Date(
-      curDate.getFullYear(),
-      curDate.getMonth() + 1,
-      0
-    ).getTime();
+      /** 해당 월의 가장 마지막날 */
+      const lastDay = new Date(
+        curDate.getFullYear(),
+        curDate.getMonth() + 1,
+        0
+      ).getTime();
 
-    setData(
-      journalList.filter(
-        (journal) => firstDay <= journal.date && journal.date <= lastDay
-      )
-    );
+      setData(
+        journalList.filter(
+          (journal) => firstDay <= journal.date && journal.date <= lastDay
+        )
+      );
+    }
   }, [curDate, journalList]);
 
   /** 이전달 표시하기 위해 월을 1씩 감소시키는 함수.  */
