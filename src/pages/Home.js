@@ -29,7 +29,7 @@ const Home = () => {
     /** 해당 월의 가장 마지막날 */
     const lastDay = new Date(
       curDate.getFullYear(),
-      curDate.getMonth(),
+      curDate.getMonth() + 1,
       0
     ).getTime();
 
