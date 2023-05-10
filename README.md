@@ -6,6 +6,10 @@ Daily journal app that helps users record and track their daily moods. With a si
 
 TBA
 
+## Tech Stack
+<img src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" width="20px" height="auto"/> React 18.2.0<br>
+💅 Styled-components
+
 ## Getting Started
 
 **Clone this repository**
@@ -31,6 +35,7 @@ npm install
 ```
 npm run start
 ```
+<br>
 
 ## References
 
@@ -42,9 +47,9 @@ https://www.behance.net/gallery/163277709/Emotional-Wellbeing-App-Case-Study/mod
 
 ## Implementation Notes
 
-- [x] Render the list of the journals that are written in current month when the page first loaded.
-- [x] By default, the journal list filtered by month.
-- [ ] Add fallback message if there is no data to display.
+- [x] Render the list of the journals that are written in current month when the page first loads.
+- [x] By default, the journal list is filtered by month.
+- [ ] Add a fallback message if there is no data to display.
 - [ ] Add a filter to sort the list by `created_date`.
 - [ ] Add a filter to sort the list by `emotions`.
 - [ ] Display the previous content in the form when in journal edit page.
